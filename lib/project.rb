@@ -1,4 +1,4 @@
-class Volunteer 
+class Project
 
 end 
 
