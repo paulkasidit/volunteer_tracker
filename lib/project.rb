@@ -28,6 +28,14 @@ class Project
     self.title == project_to_compare.title 
   end
 
+  def self.find(id) 
+    project = DB.exec("SELECT * FROM projects WHERE id = #{id};").first 
+    title = project.fetch("name")
+    id = project.fetch("id").to_i 
+    Project.new({:title => title, :id => id})
+  end
+  
+
   def self.clear
     DB.exec("DELETE FROM projects *;")
   end
