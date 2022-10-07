@@ -12,7 +12,7 @@ class Project
     returned_projects = DB.exec("SELECT * FROM projects;")
     projects = []
     returned_projects.each() do |project|
-      title = project.fetch("title")
+      title = project.fetch("name")
       id = project.fetch("id").to_i
       projects.push(Project.new({:title => title, :id => id}))
     end
@@ -27,6 +27,11 @@ class Project
   def ==(project_to_compare)
     self.title == project_to_compare.title 
   end
+
+  def self.clear
+    DB.exec("DELETE FROM projects *;")
+  end
+
 
 
 end 
