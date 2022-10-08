@@ -58,10 +58,10 @@ class Volunteer
 
   def self.find_by_project(project_id)
     volunteers = []
-    returned_volunteers = DB.exec("SELECT FROM volunteers WHERE project_id = #{@project_id};")
-    returned_volunteers.each() do |project| 
-      name = volunteers.fetch("name")
-      id = volunteers.fetch("id").to_i 
+    returned_volunteers = DB.exec("SELECT * FROM volunteers WHERE project_id = #{project_id};")
+    returned_volunteers.each() do |volunteer| 
+      name = volunteer.fetch("name")
+      id = volunteer.fetch("id").to_i 
       volunteers.push(Volunteer.new(:name => name,
                                     :project_id => project_id,
                                     :id => id))
@@ -69,7 +69,7 @@ class Volunteer
       volunteers
   end
 
-  def project 
+  def project
     Project.find(project_id)
   end
 
