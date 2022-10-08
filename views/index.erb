@@ -1,0 +1,26 @@
+<h1> Welcome to Volunteer Tracker </h1> 
+
+<h1>Project Management Buddy</h1>
+
+<h3>Search projects:</h3>
+<form action="/">
+  <div class="form-group">
+    <input id="search" name="search" class="form-control" type="text" required>
+  </div>
+  <button type="submit" class="btn btn-success">Search!</button>
+</form>
+
+<% if @projects.any? %>
+  <ul>
+    <% @projects.each do |project| %>
+      <li><a href="/project/<%= project.id %>"><%= project.title %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p> You have no projects yet!</p>
+<% end %>
+
+<a href="/project/new">Add a new project</a>
+<form action="/projects" method="post">
+  <input name="_method" type="hidden" value="patch">
+</form>
