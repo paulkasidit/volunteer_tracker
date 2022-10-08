@@ -10,72 +10,73 @@ DB = PG.connect({:dbname => "project_management"})
 
 get('/') do 
   # if params["search"]
-  #   @projects = Project.search_word(params[:search])
+  #   @projects = Project.search_project(params[:search])
   # else
      @projects = Project.all
   # end
   erb(:index)
 end
 
-# get ('/word/new') do 
-#   erb(:new_word)
+# get ('/project/new') do 
+#   erb(:new_project)
 # end
 
-# patch('/words') do
+# patch('/projects') do
 #   erb(:home_page)
 # end
 
-# post('/words') do 
-#   new_word = params[:word]
-#   word = Word.new({:word => new_word, :id => nil})
-#   word.save()
-#   redirect to('/')
-# end
+post('/projects') do 
+  new_project= params[:project]
+  project = Project.new({:title => new_project, :id => nil})
+  project.save()
+  redirect to('/')
+end
 
-# get('/word/:id') do
-#   @word = Word.find_word_by_id(params[:id].to_i())
-#   erb(:word)
-# end
+get('/project/:id') do
+  @project = Project.find(params[:id].to_i())
+  @volunteers = Volunteer.find_by_project(@project.id)
+  erb(:project)
+end
 
-# post('/word/:id/definition') do
-#   @word = Word.find_word_by_id(params[:id].to_i())
-#   definition = Definition.new({:definition => params[:definition],:word_id => @word.id, :id => nil}) 
+# post('/project/:id/definition') do
+#   @project = project.find_project_by_id(params[:id].to_i())
+#   definition = Definition.new({:definition => params[:definition],:project_id => @project.id, :id => nil}) 
 #   definition.save()
-#   erb(:word)
+#   erb(:project)
 # end
 
-# get('/word/:id/update_word') do
-#   @word = Word.find_word_by_id(params[:id].to_i())
-#   erb(:update_word)
+get('/project/:id/update_project') do
+  @project = Project.find(params[:id].to_i())
+  erb(:update_project)
+end
+
+# patch('/project/:id') do
+#   @project = project.find_project_by_id(params[:id].to_i)
+#   @project.update(params[:update_project])
+#   redirect to("/project/#{@project.id}")
 # end
 
-# patch('/word/:id') do
-#   @word = Word.find_word_by_id(params[:id].to_i)
-#   @word.update(params[:update_word])
-#   redirect to("/word/#{@word.id}")
-# end
-
-# delete('/word/:id') do
-#   word = Word.find_word_by_id(params[:id].to_i)
-#   word.delete_definition
-#   word.delete
+# delete('/project/:id') do
+#   project = project.find_project_by_id(params[:id].to_i)
+#   project.delete_definition
+#   project.delete
 #   redirect '/'
 # end
 
-# get('/word/:id/definition/:definition_id') do
-#   @word = Word.find_word_by_id(params[:id].to_i)
+# get('/project/:id/definition/:definition_id') do
+#   @project = project.find_project_by_id(params[:id].to_i)
 #   @definition = Definition.find_definition_by_id(params[:definition_id].to_i())
 #   erb(:update_definition)
 # end
 
-# patch('/word/:id/definition/:definition_id') do
+# patch('/project/:id/definition/:definition_id') do
 #   @definition = Definition.find_definition_by_id(params[:definition_id].to_i())
 #   @definition.update(params[:new_definition])
-#   redirect to("/word/#{params[:id]}")
+#   redirect to("/project/#{params[:id]}")
 # end
 
-# delete('/word/:id/definition/:definition_id') do
+# delete('/project/:id/definition/:definition_id') do
 #   definition = Definition.find_definition_by_id(params[:definition_id].to_i())
 #   definition.delete
-#   redirect to("/word/#{params[:id]}")
+#   redirect to("/project/#{params[:id]}")
 # end
