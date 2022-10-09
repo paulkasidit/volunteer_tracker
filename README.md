@@ -1,4 +1,4 @@
-#### Class
+#### Volunteer Tracker
 ## By
 
 * Kasidit Srisawat (Paul)
@@ -21,7 +21,7 @@ This web application allows a project manager to track volunteers for a project 
 
 1. Clone the repo to your desired local directory with the below terminal command (you must already have git installed). Open a terminal in your preferred directory and run this command. 
 ```
-$git clone https://github.com/paulkasidit/wordtopia
+$git clone https://github.com/paulkasidit/volunteer_tracker
 
 ``` 
 2. Open this folder in your VS Code. 
