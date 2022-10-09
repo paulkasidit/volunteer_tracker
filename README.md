@@ -13,7 +13,7 @@
 
 ## Description
 
-App description
+This web application allows a project manager to track volunteers for a project with full CRUD functionality.
 
 ## Setup/Installation Requirements
 
@@ -40,7 +40,8 @@ $rspec
 
 ## Known Bugs
 
-* Even if there is no word present, the list still displays an empty bullet point. 
+* Non passing test. Syntax error for test "Project#delete allows a user to delete a project" in project spec file. This is the only test that did not pass.
+
 
 ## License
 
