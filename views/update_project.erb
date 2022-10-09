@@ -1,17 +1,24 @@
-<h1>Update a project here</h1>
+<h1>Update a Project Here</h1>
 
 <h3>Update <%= @project.title %></h3>
 
 <form action="/project/<%= @project.id %>" method="post">
   <input name="_method" type="hidden" value="patch">
-  <label for="title">Edit project:</label>
+  <label for="title">Change Name Of Project:</label>
   <input id="title" name="title" type="text" required>
-  <button type="submit" class="btn btn-success">Change name</button>
+  <button type="submit" class="btn btn-success">Change Name</button>
 </form>
+
+<form action="/project/<%= @project.id %>/update_project" method="post">
+    <label for="volunteer">Add a New Volunteer:</label>
+    <input id="volunteer" name="volunteer" class="form-control" type="text" required>
+  <button type="submit" class="btn btn-success">Add a New Volunteer</button>
+</form>
+<br>
 
 <form action="/project/<%= @project.id %>" method="post">
   <input name="_method" type="hidden" value="delete">
-  <button type="submit" class="btn btn-danger">Delete project</button>
+  <button type="submit" class="btn btn-danger">Delete Project</button>
 </form>
 
 <p><a href="/">Home Page</a></p>

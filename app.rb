@@ -38,12 +38,13 @@ get('/project/:id') do
   erb(:project)
 end
 
-# post('/project/:id/definition') do
-#   @project = project.find(params[:id].to_i())
-#   definition = Definition.new({:definition => params[:definition],:project_id => @project.id, :id => nil}) 
-#   definition.save()
-#   erb(:project)
-# end
+post('/project/:id/update_project') do
+  @project = Project.find(params[:id].to_i())
+  volunteers = Volunteer.new({:name => params[:volunteer], :project_id => @project.id, :id => nil}) 
+  volunteers.save()
+  erb(:update_project)
+  redirect to("/project/#{params[:id]}")
+end
 
 get('/project/:id/update_project') do
   @project = Project.find(params[:id].to_i())
@@ -62,20 +63,20 @@ delete('/project/:id') do
   redirect to('/')
 end
 
-# get('/project/:id/definition/:definition_id') do
-#   @project = project.find(params[:id].to_i)
-#   @definition = Definition.find_definition_by_id(params[:definition_id].to_i())
-#   erb(:update_definition)
-# end
+get('/project/:id/volunteer/:volunteer_id') do
+  @project = Project.find(params[:id].to_i)
+  @volunteer = Volunteer.find(params[:volunteer_id].to_i())
+  erb(:update_volunteer)
+end
 
-# patch('/project/:id/definition/:definition_id') do
-#   @definition = Definition.find_definition_by_id(params[:definition_id].to_i())
-#   @definition.update(params[:new_definition])
-#   redirect to("/project/#{params[:id]}")
-# end
+patch('/project/:id/volunteer/:volunteer_id') do
+  @volunteer = Volunteer.find(params[:volunteer_id].to_i())
+  @volunteer.update(params[:name])
+  redirect to("/project/#{params[:id]}")
+end
 
-# delete('/project/:id/definition/:definition_id') do
-#   definition = Definition.find_definition_by_id(params[:definition_id].to_i())
-#   definition.delete
-#   redirect to("/project/#{params[:id]}")
-# end
+delete('/project/:id/volunteer/:volunteer_id') do
+  @volunteer = Volunteer.find(params[:volunteer_id].to_i())
+  @volunteer.delete
+  redirect to("/project/#{params[:id]}")
+end
