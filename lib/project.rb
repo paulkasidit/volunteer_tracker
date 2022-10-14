@@ -64,17 +64,5 @@ class Project
     end
   end
 
-  # def self.seach_volunteer  
-  #   returned_volunteers = DB.exec("SELECT * FROM volunteers WHERE ;")
-  #   projects = []
-  #   returned_projects.each() do |project|
-  #     title = project.fetch("name")
-  #     id = project.fetch("id").to_i
-  #     projects.push(Project.new({:title => title, :id => id}))
-  #   end
-  #   projects
-  # end
-
-
 end 
 

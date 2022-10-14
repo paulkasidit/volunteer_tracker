@@ -9,21 +9,9 @@ also_reload('lib/**/*.rb')
 DB = PG.connect({:dbname => "volunteer_tracker"})
 
 get('/') do 
-  # if params["search"]
-  #   @projects = Project.search_project(params[:search])
-  # else
-     @projects = Project.all
-  # end
+  @projects = Project.all
   erb(:index)
 end
-
-# get ('/project/new') do 
-#   erb(:new_project)
-# end
-
-# patch('/projects') do
-#   erb(:home_page)
-# end
 
 post('/projects') do 
   new_project= params[:project]
