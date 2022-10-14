@@ -40,9 +40,9 @@ class Project
     DB.exec("DELETE FROM projects *;")
   end
 
-  def update(title)
+  def update(attributes)
     project = DB.exec("SELECT * FROM projects WHERE id = #{id};").first 
-    @title = title
+    @title = attributes.fetch(:title)
     DB.exec("UPDATE projects SET name = '#{@title}' WHERE id = #{@id};")
   end
 

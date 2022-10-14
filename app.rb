@@ -6,7 +6,7 @@ require('pry')
 require('pg')
 also_reload('lib/**/*.rb')
 
-DB = PG.connect({:dbname => "project_management"})
+DB = PG.connect({:dbname => "volunteer_tracker"})
 
 get('/') do 
   # if params["search"]
@@ -53,7 +53,7 @@ end
 
 patch('/project/:id') do
   @project = Project.find(params[:id].to_i)
-  @project.update(params[:title])
+  @project.update({title: params[:title], id: nil})
   redirect to("/project/#{@project.id}")
 end
 
